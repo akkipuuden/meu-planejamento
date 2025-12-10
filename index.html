@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Meu Planejamento Pessoal</title>
-	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Meu Planejamento">
 <link rel="apple-touch-icon" href="https://img.icons8.com/color/144/calendar--v1.png">
@@ -35,24 +35,24 @@
             color: var(--text-main); 
             display: flex; 
             justify-content: center; 
-            height: 100vh; /* Altura total da tela */
-            overflow: hidden; /* Impede rolagem na página inteira */
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* --- MOLDURA DO APP (CONTAINER) --- */
+        /* --- MOLDURA DO APP --- */
         #app-frame {
             width: 100%;
             max-width: 480px;
             background: #f8fafc;
-            height: 100%; /* Ocupa 100% da altura disponível */
-            position: relative; /* Ponto de referência para elementos absolutos */
+            height: 100%;
+            position: relative;
             display: flex;
             flex-direction: column;
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
-            overflow: hidden; /* Conteúdo não vaza da moldura */
+            overflow: hidden;
         }
 
-        /* --- HEADER (Fixo no topo da moldura) --- */
+        /* --- HEADER --- */
         header { 
             background: white;
             padding: 1rem 1.5rem; 
@@ -61,19 +61,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0; /* Não encolhe */
+            flex-shrink: 0;
         }
         h1 { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
         #header-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; text-transform: capitalize; }
 
-        /* --- ÁREA DE CONTEÚDO (Onde ocorre a rolagem) --- */
+        /* --- ÁREA DE CONTEÚDO --- */
         main {
-            flex: 1; /* Ocupa o espaço restante */
-            overflow-y: auto; /* Rolagem apenas aqui */
-            padding-bottom: 90px; /* Espaço para não esconder conteúdo atrás do menu */
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 90px;
             scroll-behavior: smooth;
         }
-        /* Esconder barra de rolagem mas manter funcionalidade */
         main::-webkit-scrollbar { width: 4px; }
         main::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
 
@@ -84,23 +83,17 @@
 
         h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-main); font-weight: 700; }
 
-        /* --- ELEMENTOS FLUTUANTES (Agora posicionados relativo ao #app-frame) --- */
-        
-        /* Menu Inferior */
+        /* --- ELEMENTOS FLUTUANTES --- */
         .bottom-nav { 
-            position: absolute; 
-            bottom: 0; left: 0; width: 100%;
+            position: absolute; bottom: 0; left: 0; width: 100%;
             background: white; height: var(--nav-height); 
             display: flex; justify-content: space-around; align-items: center; 
             box-shadow: 0 -1px 10px rgba(0,0,0,0.05); border-top: 1px solid #f1f5f9;
             z-index: 50;
         }
 
-        /* Botão Flutuante (+) */
         .fab-btn {
-            position: absolute; /* Fixado dentro do #app-frame */
-            bottom: 85px; /* Acima do menu */
-            right: 20px;  /* Canto direito do frame */
+            position: absolute; bottom: 85px; right: 20px;
             background: var(--primary); color: white;
             width: 56px; height: 56px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -151,11 +144,16 @@
             display: flex; justify-content: space-between; align-items: center; 
             padding: 1rem; background: white; border-radius: 12px; 
             box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 4px solid transparent;
+            transition: opacity 0.3s;
         }
         .task-row.event { border-left-color: var(--primary); }
         .task-row.routine { border-left-color: var(--secondary); }
         .task-time { font-weight: 700; font-size: 0.9rem; margin-right: 10px; min-width: 45px; }
         
+        /* Checkbox Customizado */
+        .task-check { width: 22px; height: 22px; cursor: pointer; accent-color: var(--primary); }
+        .task-row.routine .task-check { accent-color: var(--secondary); }
+
         /* Finanças */
         .fin-grid { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
         .fin-box { flex: 1; background: white; padding: 1rem; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
@@ -175,7 +173,6 @@
         /* Modais */
         .modal { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: flex-end; backdrop-filter: blur(2px); }
         
-        /* Modal Content (Estilo Sheet Inferior) */
         .modal-content { 
             background: white; padding: 1.5rem; 
             border-radius: 24px 24px 0 0; width: 100%; 
@@ -184,7 +181,6 @@
         }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-        /* Modal Tela Cheia (Detalhes do Dia) */
         .modal-fullscreen { align-items: center; }
         .modal-fullscreen .modal-content { 
             height: 100%; max-height: 100%; border-radius: 0; padding: 0; background: #f8fafc;
@@ -194,7 +190,7 @@
         .day-view-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
 
         /* Forms */
-        input, select { width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 1rem; background: #f8fafc; outline: none; }
+        input:not([type="checkbox"]), select { width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 1rem; background: #f8fafc; outline: none; }
         .row { display: flex; gap: 10px; }
         .btn-primary { background: var(--primary); color: white; border: none; padding: 1rem; border-radius: 12px; width: 100%; font-weight: 600; cursor: pointer; }
         .btn-secondary { background: white; border: 1px solid #cbd5e1; color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
@@ -211,6 +207,11 @@
         #toast.visible { opacity: 1; }
 
     </style>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Meu Planejamento">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/144/calendar--v1.png">
 </head>
 <body>
 
@@ -367,7 +368,7 @@
 
     </div> <script>
         // --- JAVASCRIPT ---
-        const APP_KEY = 'my_planner_v5_final';
+        const APP_KEY = 'my_planner_v6_final';
         let viewDate = new Date();
         let selectedDateStr = '';
         
@@ -381,7 +382,6 @@
             navigate('dashboard');
             setInterval(checkNotifications, 30000);
             
-            // Dados iniciais de exemplo se vazio
             if(data.metricsTemplates.length === 0) {
                 data.metricsTemplates = [
                     { id: 1, title: 'Acordar', time: '07:00' },
@@ -405,8 +405,6 @@
             if(document.getElementById('calendar').classList.contains('active')) renderCalendar();
             if(document.getElementById('metrics').classList.contains('active')) renderMetrics();
             if(document.getElementById('finance').classList.contains('active')) renderFinance();
-            
-            // Se modal de dia estiver aberto, atualiza ele também
             if(document.getElementById('day-view-modal').style.display === 'flex') openDayDetails(selectedDateStr);
         }
 
@@ -418,14 +416,64 @@
         function navigate(viewId) {
             document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(viewId).classList.add('active');
             
             const map = { 'dashboard': 0, 'calendar': 1, 'metrics': 2, 'finance': 3 };
             const navs = document.querySelectorAll('.nav-item');
             if(navs[map[viewId]]) navs[map[viewId]].classList.add('active');
-            
             refreshCurrentView();
+        }
+
+        // --- DASHBOARD ATUALIZADO (Com Checkbox) ---
+        function renderDashboard() {
+            let bal = 0; data.transactions.forEach(t => bal += t.type === 'income' ? parseFloat(t.amount) : -parseFloat(t.amount));
+            document.getElementById('dash-balance').innerText = `R$ ${bal.toFixed(2)}`;
+
+            const list = document.getElementById('dash-tasks-list');
+            list.innerHTML = '';
+            
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Eventos
+            const evs = data.events.filter(e => e.dateString === today).map(e=>({...e, type:'event', done: e.completed || false }));
+            // Rotinas
+            const ruts = data.metricsTemplates.map(t => {
+                const isDone = (data.dailyMetrics[today] && data.dailyMetrics[today][t.id]) ? data.dailyMetrics[today][t.id].done : false;
+                return {...t, type:'routine', done: isDone};
+            });
+
+            const all = [...evs, ...ruts].sort((a,b)=>a.time.localeCompare(b.time));
+
+            if(all.length===0) list.innerHTML = '<div style="text-align:center; color:#94a3b8; padding:1rem">Tudo feito! 🎉</div>';
+            else all.forEach(i => {
+                const div = document.createElement('div');
+                div.className = `task-row ${i.type}`;
+                div.style.padding = '1rem'; 
+                div.style.opacity = i.done ? '0.6' : '1';
+                
+                div.innerHTML = `
+                    <div style="display:flex; align-items:center; flex:1">
+                        <span class="task-time" style="color:var(${i.type==='event'?'--primary':'--secondary'})">${i.time}</span>
+                        <span class="task-title" style="${i.done ? 'text-decoration:line-through' : ''}">${i.title}</span>
+                    </div>
+                    <input type="checkbox" class="task-check" ${i.done ? 'checked' : ''} onchange="toggleDashTask('${i.type}', ${i.id}, this.checked)">
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        // Nova função para check no dashboard
+        function toggleDashTask(type, id, isChecked) {
+            const today = new Date().toISOString().split('T')[0];
+            if(type === 'event') {
+                const ev = data.events.find(e => e.id === id);
+                if(ev) ev.completed = isChecked;
+            } else {
+                if(!data.dailyMetrics[today]) data.dailyMetrics[today] = {};
+                if(!data.dailyMetrics[today][id]) data.dailyMetrics[today][id] = {};
+                data.dailyMetrics[today][id].done = isChecked;
+            }
+            saveData();
         }
 
         // --- CALENDÁRIO ---
@@ -472,7 +520,7 @@
             const dateObj = new Date(y, m-1, d);
             document.getElementById('day-view-title').innerText = dateObj.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
 
-            const events = data.events.filter(e => e.dateString === dateStr).map(e => ({...e, type: 'event'}));
+            const events = data.events.filter(e => e.dateString === dateStr).map(e => ({...e, type: 'event', done: e.completed || false}));
             const routines = data.metricsTemplates.map(tpl => {
                 const done = (data.dailyMetrics[dateStr] && data.dailyMetrics[dateStr][tpl.id]) ? data.dailyMetrics[dateStr][tpl.id].done : false;
                 return { ...tpl, type: 'routine', done, dateString: dateStr };
@@ -485,25 +533,27 @@
                 all.forEach(item => {
                     const el = document.createElement('div');
                     el.className = `task-row ${item.type}`;
+                    el.style.opacity = item.done ? '0.6' : '1';
                     
+                    let htmlContent = `
+                        <div style="flex:1; display:flex; align-items:center;">
+                            <span class="task-time" style="color:var(${item.type === 'event' ? '--primary' : '--secondary'})">${item.time}</span>
+                            <span class="task-title" style="${item.done ? 'text-decoration:line-through' : ''}">${item.title}</span>
+                        </div>
+                    `;
+
                     if(item.type === 'event') {
-                        el.innerHTML = `
-                            <div style="flex:1">
-                                <span class="task-time" style="color:var(--primary)">${item.time}</span>
-                                <span class="task-title">${item.title}</span>
-                            </div>
+                         htmlContent += `
+                            <input type="checkbox" class="task-check" style="margin-right:10px" ${item.done ? 'checked' : ''} onchange="toggleDashTask('event', ${item.id}, this.checked)">
                             <button class="del-btn" onclick="deleteEvent(${item.id})"><span class="material-icons-round">delete</span></button>
                         `;
                     } else {
-                        const isDone = item.done;
-                        el.innerHTML = `
-                            <div style="flex:1; opacity: ${isDone ? 0.5 : 1}">
-                                <span class="task-time" style="color:var(--secondary)">${item.time}</span>
-                                <span class="task-title" style="${isDone ? 'text-decoration:line-through' : ''}">${item.title}</span>
-                            </div>
-                            <input type="checkbox" style="width:20px; height:20px; accent-color:var(--secondary)" ${isDone ? 'checked' : ''} onchange="toggleMetric('${dateStr}', ${item.id}, this.checked)">
+                        htmlContent += `
+                            <input type="checkbox" class="task-check" ${item.done ? 'checked' : ''} onchange="toggleDashTask('routine', ${item.id}, this.checked)">
                         `;
                     }
+                    
+                    el.innerHTML = htmlContent;
                     container.appendChild(el);
                 });
             }
@@ -523,22 +573,23 @@
             const title = document.getElementById('event-title').value;
             const dateStr = document.getElementById('event-date').value;
             const start = document.getElementById('event-start').value;
+            const end = document.getElementById('event-end').value;
+
             if(!title || !dateStr || !start) return showToast('Preencha os campos');
             
-            data.events.push({ id: Date.now(), title, dateString: dateStr, time: start });
+            data.events.push({ id: Date.now(), title, dateString: dateStr, time: start, completed: false });
             saveData();
             closeModal('event-modal');
-            showToast('Evento criado');
-        }
-        function deleteEvent(id) {
-            if(confirm('Excluir?')) { data.events = data.events.filter(e => e.id !== id); saveData(); }
+            
+            if(confirm('Evento salvo! Adicionar ao Calendário do iPhone?')) {
+                downloadICS(title, dateStr, start, end);
+            } else {
+                showToast('Evento criado');
+            }
         }
 
-        function toggleMetric(dateStr, id, isChecked) {
-            if(!data.dailyMetrics[dateStr]) data.dailyMetrics[dateStr] = {};
-            if(!data.dailyMetrics[dateStr][id]) data.dailyMetrics[dateStr][id] = {};
-            data.dailyMetrics[dateStr][id].done = isChecked;
-            saveData();
+        function deleteEvent(id) {
+            if(confirm('Excluir?')) { data.events = data.events.filter(e => e.id !== id); saveData(); }
         }
 
         function renderMetrics() {
@@ -550,12 +601,13 @@
                 const isDone = (data.dailyMetrics[today] && data.dailyMetrics[today][tpl.id]) ? data.dailyMetrics[today][tpl.id].done : false;
                 const div = document.createElement('div');
                 div.className = 'task-row routine';
+                div.style.opacity = isDone ? '0.6' : '1';
                 div.innerHTML = `
-                    <div style="flex:1; opacity:${isDone?0.5:1}">
+                    <div style="flex:1;">
                         <span class="task-time" style="color:var(--secondary)">${tpl.time}</span>
                         <span class="task-title" style="${isDone?'text-decoration:line-through':''}">${tpl.title}</span>
                     </div>
-                    <input type="checkbox" style="width:20px; height:20px; accent-color:var(--secondary)" ${isDone ? 'checked' : ''} onchange="toggleMetric('${today}', ${tpl.id}, this.checked)">
+                    <input type="checkbox" class="task-check" ${isDone ? 'checked' : ''} onchange="toggleDashTask('routine', ${tpl.id}, this.checked)">
                 `;
                 list.appendChild(div);
             });
@@ -613,32 +665,58 @@
         }
         function delTrans(id) { if(confirm('Excluir?')) { data.transactions = data.transactions.filter(t=>t.id!==id); saveData(); } }
 
-        function renderDashboard() {
-            let bal = 0; data.transactions.forEach(t => bal += t.type === 'income' ? parseFloat(t.amount) : -parseFloat(t.amount));
-            document.getElementById('dash-balance').innerText = `R$ ${bal.toFixed(2)}`;
-
-            const list = document.getElementById('dash-tasks-list');
-            list.innerHTML = '';
-            const today = new Date().toISOString().split('T')[0];
-            const evs = data.events.filter(e => e.dateString === today).map(e=>({...e, type:'event'}));
-            const ruts = data.metricsTemplates.filter(t => !((data.dailyMetrics[today]||{})[t.id]||{}).done).map(t=>({...t, type:'routine'}));
-            const all = [...evs, ...ruts].sort((a,b)=>a.time.localeCompare(b.time));
-
-            if(all.length===0) list.innerHTML = '<div style="text-align:center; color:#94a3b8; padding:1rem">Tudo feito! 🎉</div>';
-            else all.slice(0,5).forEach(i => {
-                const d = document.createElement('div'); d.className=`task-row ${i.type}`; d.style.padding='0.8rem';
-                d.innerHTML = `<span class="task-time" style="color:var(${i.type==='event'?'--primary':'--secondary'})">${i.time}</span> <span>${i.title}</span>`;
-                list.appendChild(d);
-            });
+        // --- UTILS ICS ---
+        function formatDateForICS(dateStr, timeStr) {
+            const cleanDate = dateStr.replace(/-/g, '');
+            const cleanTime = timeStr.replace(/:/g, '') + '00';
+            return `${cleanDate}T${cleanTime}`;
         }
 
-        // --- UTILS ---
+        function downloadICS(title, date, start, end) {
+            let endTime = end;
+            if(!endTime) {
+                const [h, m] = start.split(':').map(Number);
+                const endH = (h + 1).toString().padStart(2, '0');
+                endTime = `${endH}:${m}`;
+            }
+
+            const startFormatted = formatDateForICS(date, start);
+            const endFormatted = formatDateForICS(date, endTime);
+
+            const icsMsg = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Meu Planejamento//PT
+BEGIN:VEVENT
+UID:${Date.now()}@meuplanejamento.com
+DTSTAMP:${startFormatted}Z
+DTSTART:${startFormatted}
+DTEND:${endFormatted}
+SUMMARY:${title}
+DESCRIPTION:Evento criado via Meu Planejamento
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Lembrete
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsMsg], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'evento.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         function checkNotifications() {
             const now = new Date();
             const todayStr = now.toISOString().split('T')[0];
             const nowMins = now.getHours() * 60 + now.getMinutes();
             data.events.forEach(e => {
-                if(e.dateString === todayStr) {
+                if(e.dateString === todayStr && !e.completed) {
                     const [h, m] = e.time.split(':').map(Number);
                     if((h*60 + m) - nowMins === 10) showToast(`🔔 ${e.title} em 10 min`);
                 }
